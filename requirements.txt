@@ -1,0 +1,5 @@
+classiq==0.38.0
+matplotlib==3.8.3
+networkx==2.8.8
+pandas==1.5.3
+Pyomo==6.5.0
