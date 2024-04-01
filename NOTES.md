@@ -57,5 +57,16 @@
         <li>
             <a href=https://ali-ibrahim137.github.io/competitive/programming/2020/01/02/maximum-independent-set-in-bipartite-graphs.html>GitHub page on Maximum Independent set in Bipartite Graphs</a>
         </li>
+        <li>
+            <a href=https://docs.classiq.io/latest/tutorials/applications/optimization/max-independent-set/max-independent-set/>Classiq - MIS</a>
+        </li>
     </ul>
 </details>
+
+
+## Commands
+
+```bash
+# create requirements.txt
+pireqs --ignore _env_ --force .
+```
