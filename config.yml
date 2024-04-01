@@ -1,0 +1,13 @@
+# nx graph variables
+NUM_NODES: 8
+EDGES_PROBS: 0.4
+SEED: 42
+DRAW_GRAPHS: true
+
+# QAOA variables
+QAOA_LAYER_DEPTH: 2
+STEPS: 50
+SIMULATOR: "qulacs.simulator"
+
+# Other configs
+LOGS_FILE: "logs.csv"
