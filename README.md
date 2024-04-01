@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-# qsof_excercises
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 # qsof_excercises
 
 The MIS problem aims to find the largest set of nodes in a graph such that no two nodes in the set are adjacent.
@@ -27,13 +18,4 @@ solver.solve(mis_problem)
 # Extract the solution
 solution = [node for node in graph.nodes if pyo.value(mis_problem.x[node]) > 0]
 print("Maximum Independent Set:", solution)
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 ```
->>>>>>> Stashed changes
-=======
-```
->>>>>>> Stashed changes
-=======
-```
->>>>>>> Stashed changes
