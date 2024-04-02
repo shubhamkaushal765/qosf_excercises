@@ -67,11 +67,9 @@ LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
 
 ```
 
-
-
 ## QAOA in action
 
-<div style="display: flex; justify-content: space-between;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
     <div style="width: 30%;">
         <h3>Generated Graph</h3>
         <img src="images/generated_graph.jpg" alt="Generated Graph" style="width: 100%;">
