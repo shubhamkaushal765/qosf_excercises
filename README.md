@@ -6,6 +6,21 @@ This project implements a solver for the Maximum Independent Set (MIS) problem u
 
 The `main.py` script initializes and runs the QAOA solver based on the configurations specified in the `config.yml` file. It uses PennyLane, a Python library for quantum machine learning, to construct and optimize quantum circuits.
 
+## QAOA in action
+
+### `Nodes=6, Edge Probs=0.4, Seed=42`
+
+Generated Graph | Probability Distribution | After Solving the QAOA
+:-------------:|:-------------:|:-------------:
+![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg)
+
+### `Nodes=6, Edge Probs=0.4, Seed=50`
+
+Generated Graph | Probability Distribution | After Solving the QAOA
+:-------------:|:-------------:|:-------------:
+![](images/generated_graph_seed50.jpg) | ![](images/probability_distribution_seed50.jpg) | ![](images/mis_solved_seed50.jpg)
+
+
 ## Usage
 
 - **Installation**: 
@@ -70,16 +85,8 @@ LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
 
 ```
 
-## QAOA in action
-
-Generated Graph | Probability Distribution | After Solving the QAOA
-:-------------:|:-------------:|:-------------:
-![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg)
-
 ## Author
 
-## Author
-
-Shubham Kaushal
-Email: kaushalshubham.ks@gmail.com
-GitHub: [Shubham Kaushal](https://github.com/shubhamkaushal765)
+Shubham Kaushal <br>
+Email: kaushalshubham.ks@gmail.com <br>
+[LinkedIn](https://www.linkedin.com/in/kaushalshubham/) | [GitHub](https://github.com/shubhamkaushal765)
