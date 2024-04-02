@@ -54,12 +54,6 @@ LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
 
 ## Example run with the above configuration
 
-### Generated Graph
-
-With 6 nodes and edge-probability of 0.4, the generated graph is:
-
-![generate_graph](images/generated_graph.jpg)
-
 ### Parameters in the logs/logs.csv file
 
 ```csv
@@ -73,10 +67,21 @@ With 6 nodes and edge-probability of 0.4, the generated graph is:
 
 ```
 
-### The Probability Distribution
 
-![probability_distribution](images/probability_distribution.jpg)
 
-### Solution of the MIS solver
+## QAOA in action
 
-![MIS_solved](images/mis_solved.jpg)
+<div style="display: flex; justify-content: space-between;">
+    <div style="width: 30%;">
+        <h3>Generated Graph</h3>
+        <img src="images/generated_graph.jpg" alt="Generated Graph" style="width: 100%;">
+    </div>
+    <div style="width: 30%;">
+        <h3>Probability Distribution</h3>
+        <img src="images/probability_distribution.jpg" alt="Probability Distribution" style="width: 100%;">
+    </div>
+    <div style="width: 30%;">
+        <h3>After Solving using QAOA</h3>
+        <img src="images/mis_solved.jpg" alt="MIS solved" style="width: 100%;">
+    </div>
+</div>
