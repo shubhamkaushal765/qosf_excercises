@@ -16,6 +16,9 @@ The `main.py` script initializes and runs the QAOA solver based on the configura
 - **Configuration**: Modify the `config.yml` file to specify the parameters for the QAOA solver. The configuration file includes settings such as the number of nodes, edge probabilities, QAOA type, layer depth, and simulator.
 
 - **Running the Solver**: Execute the `main.py` script to run the QAOA solver. It reads the configuration from `config.yml`, initializes the solver, solves the MIS problem, and visualizes the results.
+    ```python 
+    python main.py
+    ```
 
 - **Visualization**: If specified in the configuration, the solver can draw the generated graph and highlight the nodes in the maximum independent set.
 
@@ -71,4 +74,12 @@ LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
 
 Generated Graph | Probability Distribution | After Solving the QAOA
 :-------------:|:-------------:|:-------------:
-![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg) 
+![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg)
+
+## Author
+
+## Author
+
+Shubham Kaushal
+Email: kaushalshubham.ks@gmail.com
+GitHub: [Shubham Kaushal](https://github.com/shubhamkaushal765)
