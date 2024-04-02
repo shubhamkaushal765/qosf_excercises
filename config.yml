@@ -1,0 +1,19 @@
+# nx graph variables
+NUM_NODES: 6          # Number of nodes in the graph
+EDGES_PROBS: 0.4      # Probability of edge creation
+SEED: 42              # Seed for random graph generation
+DRAW_GRAPH: true      # Whether to draw the generated graph
+
+# QAOA variables
+QAOA_TYPE: "GATE-BASED"    # Type of QAOA, either "GATE-BASED" or "ADIABATIC"
+QAOA_LAYER_DEPTH: 2         # Depth of QAOA layers
+STEPS: 50                    # Number of optimization steps
+SIMULATOR: "qulacs.simulator"   # Quantum simulator to use
+QAOA_LAYER_PARAMS:          # Initial parameters for QAOA layers
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+
+# Other configs
+LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
