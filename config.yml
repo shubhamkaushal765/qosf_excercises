@@ -1,7 +1,7 @@
 # nx graph variables
-NUM_NODES: 5          # Number of nodes in the graph
+NUM_NODES: 6          # Number of nodes in the graph
 EDGES_PROBS: 0.4      # Probability of edge creation
-SEED: 10              # Seed for random graph generation
+SEED: 42              # Seed for random graph generation
 DRAW_GRAPH: true      # Whether to draw the generated graph
 
 # QAOA variables
