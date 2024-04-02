@@ -68,5 +68,5 @@
 
 ```bash
 # create requirements.txt
-pireqs --ignore _env_ --force .
+python -m pipreqs.pipreqs --ignore _env_ --force
 ```
