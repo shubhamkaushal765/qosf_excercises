@@ -69,17 +69,6 @@ LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
 
 ## QAOA in action
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-    <div style="width: 30%;">
-        <h3>Generated Graph</h3>
-        <img src="images/generated_graph.jpg" alt="Generated Graph" style="width: 100%;">
-    </div>
-    <div style="width: 30%;">
-        <h3>Probability Distribution</h3>
-        <img src="images/probability_distribution.jpg" alt="Probability Distribution" style="width: 100%;">
-    </div>
-    <div style="width: 30%;">
-        <h3>After Solving using QAOA</h3>
-        <img src="images/mis_solved.jpg" alt="MIS solved" style="width: 100%;">
-    </div>
-</div>
+Generated Graph | Probability Distribution | After Solving the QAOA
+:-------------:|:-------------:|:-------------:
+![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg) 
