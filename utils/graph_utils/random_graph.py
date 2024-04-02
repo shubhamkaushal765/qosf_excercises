@@ -15,7 +15,4 @@ def get_random_graph(num_nodes=8, p_edge=0.4, draw_graph=True, seed=12345):
     nx.Graph: The generated random graph.
     """
     graph = nx.fast_gnp_random_graph(n=num_nodes, p=p_edge, seed=seed)
-    if draw_graph:
-        nx.draw_kamada_kawai(graph, with_labels=True)
-        plt.show()
     return graph
