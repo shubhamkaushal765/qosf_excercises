@@ -4,16 +4,20 @@ import sys, yaml
 from tqdm import tqdm
 
 sys.path.append(".")
-config = yaml.safe_load(open("config.yml"))
 
-from graph_utils import get_random_graph
+from utils.graph_utils import get_random_graph
+from utils.dict_utils import dotdict
+
+config = yaml.safe_load(open("config.yml"))
+config = dotdict(config)
+
 import pennylane as qml
 from pennylane import qaoa
 from pennylane import numpy as np
 
 
 class PennylaneMIS_QAOA:
-    def __init__(self, qaoa_layer_depth, steps=50):
+    def __init__(self, qaoa_layer_depth, device, steps=50):
 
         # graph variables
         self.num_nodes = None
@@ -30,7 +34,8 @@ class PennylaneMIS_QAOA:
         self.cost_h, self.mixer_h = None, None
 
         # setting up simulating device
-        self.dev = qml.device("qulacs.simulator", wires=self.num_nodes)
+        self.dev = None
+        self.device = device
 
     def set_nx_graph_to_solve(self, num_nodes, edge_probs, seed, draw_graph=False):
 
@@ -47,6 +52,7 @@ class PennylaneMIS_QAOA:
 
         # define the cost and mixer hamiltonian based on the given graph
         self.cost_h, self.mixer_h = qaoa.cost.max_independent_set(self.graph)
+        self.dev = qml.device(self.device, wires=self.num_nodes)
 
     def qaoa_layer(self, gamma, alpha):
         qaoa.cost_layer(gamma, self.cost_h)
@@ -54,9 +60,9 @@ class PennylaneMIS_QAOA:
 
     def circuit(self, params, **kwargs):
         for wire in range(self.num_nodes):
-            qml.Hadamard(wire=wire)
+            qml.Hadamard(wires=wire)
         qml.layer(
-            self.qaoa_layer, self.qaoa_layer_depth, params[0], params[1], params[1]
+            self.qaoa_layer, self.qaoa_layer_depth, params[0], params[1]
         )
 
     def solve(self, logs_file=None):
@@ -85,7 +91,7 @@ class PennylaneMIS_QAOA:
 
 
 if __name__ == "__main__":
-    solver = PennylaneMIS_QAOA(config.QAOA_LAYER_DEPTH, config.STEPS)
+    solver = PennylaneMIS_QAOA(config.QAOA_LAYER_DEPTH, config.SIMULATOR, config.STEPS)
     solver.set_nx_graph_to_solve(
         config.NUM_NODES, config.EDGES_PROBS, config.SEED, config.DRAW_GRAPH
     )

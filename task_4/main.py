@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 sys.path.append(".")
 
-from graph_utils import get_random_graph
+from utils.graph_utils import get_random_graph
 import pennylane as qml
 from pennylane import qaoa
 from pennylane import numpy as np

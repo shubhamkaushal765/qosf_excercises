@@ -10,4 +10,4 @@ STEPS: 50
 SIMULATOR: "qulacs.simulator"
 
 # Other configs
-LOGS_FILE: "logs.csv"
+LOGS_FILE: "logs/logs.csv"
