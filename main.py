@@ -23,7 +23,7 @@ def gate_based_solver(config):
         config.SIMULATOR,
         config.STEPS,
     )
-    solver.set_nx_graph_to_solve(config.NUM_NODES, config.EDGES_PROBS, config.SEED)
+    solver.set_nx_graph(config.NUM_NODES, config.EDGES_PROBS, config.SEED)
 
     if config.DRAW_GRAPH:
         solver.draw_graph("Generated Graph")

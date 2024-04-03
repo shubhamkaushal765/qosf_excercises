@@ -5,6 +5,7 @@ import yaml
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import networkx as nx
+from .mis import MISGraph
 
 sys.path.append(".")
 
@@ -13,7 +14,7 @@ from pennylane import qaoa
 from pennylane import numpy as np
 
 
-class PennylaneMIS_QAOA:
+class PennylaneMIS_QAOA(MISGraph):
     """A class for solving Maximum Independent Set (MIS) problem using QAOA algorithm with PennyLane."""
 
     def __init__(self, qaoa_layer_params, qaoa_layer_depth, device, steps=50):
@@ -26,12 +27,7 @@ class PennylaneMIS_QAOA:
             steps (int, optional): Number of optimization steps. Defaults to 50.
         """
 
-        # Graph variables
-        self.num_nodes = None
-        self.edge_probs = None
-        self.seed = None
-        self.graph = None
-        self.mis_nodes = None
+        super().__init__()
 
         # QAOA variables
         self.qaoa_layer_depth = qaoa_layer_depth
@@ -43,26 +39,6 @@ class PennylaneMIS_QAOA:
         # Setting up simulating device
         self.dev = None
         self.device = device
-
-    def set_nx_graph_to_solve(self, num_nodes, edge_probs, seed):
-        """Set up the graph to solve MIS with QAOA.
-
-        Args:
-            num_nodes (int): Number of nodes in the graph.
-            edge_probs (float): Probability of edge creation.
-            seed (int): Random seed for graph generation.
-        """
-        # graph variables
-        self.num_nodes = num_nodes
-        self.edge_probs = edge_probs
-        self.seed = seed
-
-        # nx.graph to solve MIS with QAOA
-        self.graph = nx.fast_gnp_random_graph(n=num_nodes, p=edge_probs, seed=seed)
-
-        # define the hamiltonians and device based on the given graph
-        self.cost_h, self.mixer_h = qaoa.cost.max_independent_set(self.graph)
-        self.dev = qml.device(self.device, wires=self.num_nodes)
 
     def qaoa_layer(self, gamma, alpha):
         """Apply QAOA layer.
@@ -86,7 +62,7 @@ class PennylaneMIS_QAOA:
 
     def solve(self, logs_file=None):
         """Solve the MIS problem using QAOA."""
-        
+
         # sanity checks
         assert self.cost_h is not None
         assert self.mixer_h is not None
@@ -127,44 +103,6 @@ class PennylaneMIS_QAOA:
         plt.bar(range(2 ** len(wires)), probs)
         plt.show()
         return probs
-
-    def set_mis_nodes(self, nodes_bitstring):
-        """Set the nodes belonging to the maximum independent set.
-
-        Args:
-            nodes_bitstring (str): Bitstring representing the MIS nodes.
-        """
-        self.mis_nodes = "0" * (self.num_nodes - len(nodes_bitstring)) + nodes_bitstring
-
-    def draw_graph(self, title=None, with_mis_nodes=False):
-        """Draw the graph.
-
-        Args:
-            title (str, optional): Title for the plot. Defaults to None.
-            with_mis_nodes (bool, optional): Whether to highlight MIS nodes. Defaults to False.
-        """
-        
-        mis_flags = self.mis_nodes
-        if with_mis_nodes == True:
-
-            # sanity checks
-            assert mis_flags is not None, "MIS nodes not specified."
-            assert len(mis_flags) == len(
-                self.graph
-            ), f"Length of MIS node bitstring: {mis_flags} does not match \
-                number of nodes in the graph: {self.num_nodes}."
-
-            color_map = list(map(int, mis_flags))
-            color_map = [["lightblue", "green"][i] for i in color_map]
-
-        else:
-            color_map = ["lightblue" for _ in range(self.num_nodes)]
-
-        plt.figure()
-        if title is not None:
-            plt.title(title)
-        nx.draw_kamada_kawai(self.graph, node_color=color_map, with_labels=True)
-        plt.show()
 
 
 if __name__ == "__main__":
