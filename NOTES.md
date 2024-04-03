@@ -63,6 +63,10 @@
     </ul>
 </details>
 
+### Adiabatic QAOA
+
+- [Adiabatic Quantum Computing - Peter Wittek](https://www.youtube.com/watch?v=csgEVurrBpU)
+
 
 ## Commands
 
