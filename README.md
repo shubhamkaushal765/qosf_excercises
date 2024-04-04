@@ -22,7 +22,7 @@
   - [`Nodes=6, Edge Probs=0.4, Seed=50`](#nodes6-edge-probs04-seed50)
 - [Observations and Conclusions](#observations-and-conclusions)
 - [Future Work](#future-work)
-- [Other Resources](#other-resources)
+- [Resources](#resources)
 - [Author](#author)
 
 ## Overview
@@ -183,7 +183,7 @@ If specified in the configuration, the solver can draw the generated graph and h
 
 The key aspects are conducting ablation studies by varying relevant parameters for both solvers, and evaluating their performance as problem sizes scale up. This can provide insights into parameter sensitivities, optimal configurations, and potential limitations of the algorithms.
 
-## Other Resources
+## Resources
 <details>
 <summary>Notes</summary>
 - Generate requirements.txt
