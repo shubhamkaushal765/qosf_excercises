@@ -48,6 +48,14 @@ The adiabatic quantum algorithm used in this implementation is based on the prin
 
 ### QAOA Solution
 
+| Number of Nodes |  Probability Distribution   |    Most Probable Solution    |
+| :-------------: | :-------------------------: | :--------------------------: |
+|        3        | ![](images/qaoa_g3_pd.jpeg) | ![](images/qaoa_g3_sol.jpeg) |
+|        5        | ![](images/qaoa_g5_pd.jpeg) | ![](images/qaoa_g5_sol.jpeg) |
+|        6        | ![](images/qaoa_g6_pd.jpeg) | ![](images/qaoa_g6_sol.jpeg) |
+|        7        | ![](images/qaoa_g7_pd.jpeg) | ![](images/qaoa_g7_sol.jpeg) |
+
+
 ### Adiabatic Solution
 
 #### Adiabatic Paramaters for solving the MIS problem
