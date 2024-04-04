@@ -1,7 +1,3 @@
-"""
-https://pulser.readthedocs.io/en/stable/tutorials/qubo.html#Quantum-Adiabatic-Algorithm
-"""
-
 import numpy as np
 from pulser import Pulse, Sequence, Register
 from pulser_simulation import QutipEmulator
@@ -24,8 +20,7 @@ class AdiabaticMIS(MISGraph):
 
         Args:
             num_nodes (int): The number of nodes in the graph.
-            distance_multiplier (float, optional): A multiplier for the node coordinates.
-                Defaults to 8.
+            distance_multiplier (float, optional): A multiplier for the node coordinates. Defaults to 8.
         """
         super().__init__()
         self.num_nodes = num_nodes

@@ -1,6 +1,6 @@
 import yaml
 from utils.dict_utils import dotdict
-from task_4.qaoa_gate_based import PennylaneMIS_QAOA
+from task_4.qaoa import PennylaneMIS_QAOA
 from pennylane import numpy as np
 
 config = yaml.safe_load(open("config.yml"))
