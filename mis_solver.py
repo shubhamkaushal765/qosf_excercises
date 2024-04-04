@@ -62,6 +62,8 @@ def qaoa_solver(config):
 
     # Set the MIS nodes based on the solution
     solver.set_mis_nodes(ans_nodes)
+    ans = solver.mis_nodes
+    print(f"QAOA Solution: {ans}")
 
     # Draw the graph with the MIS nodes highlighted
     solver.draw_graph("MIS nodes (in green)", with_mis_nodes=True)
