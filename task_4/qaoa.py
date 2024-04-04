@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 sys.path.append(".")
 
-from mis import MISGraph
+from .mis import MISGraph
 from utils.graph_utils import get_square_graph
 
 import networkx as nx
