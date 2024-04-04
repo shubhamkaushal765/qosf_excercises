@@ -72,25 +72,37 @@ The adiabatic quantum algorithm used in this implementation is based on the prin
 Modify the `config.yml` file to customize the QAOA solver parameters:
 
 ```yaml
-# nx graph variables
-NUM_NODES: 6          # Number of nodes in the graph
-EDGES_PROBS: 0.4      # Probability of edge creation
-SEED: 42              # Seed for random graph generation
-DRAW_GRAPH: true      # Whether to draw the generated graph
+# Global variables
+DRAW_PLOTS: true      # Whether to draw the generated graph
+NUM_NODES: 5          # Number of nodes in the graph, for both QAOA and Adiabatic solvers
+SOLVERS: "both"       # one of ["QAOA", "Adiabatic", "both"], determines which solver to run
 
 # QAOA variables
-QAOA_TYPE: "GATE-BASED"    # Type of QAOA, either "GATE-BASED" or "ADIABATIC"
-QAOA_LAYER_DEPTH: 2         # Depth of QAOA layers
-STEPS: 50                    # Number of optimization steps
-SIMULATOR: "qulacs.simulator"   # Quantum simulator to use
-QAOA_LAYER_PARAMS:          # Initial parameters for QAOA layers
-  - 0.5
-  - 0.5
-  - 0.5
-  - 0.5
+QAOA_VARS:
+    RANDOM_GRAPH: true          # Whether to generate random graphs. If true, then global NUM_NODES is overridden
+    NUM_NODES: 6                # Number of nodes in the graph. Only works if RANDOM_GRAPH is true.
+    EDGE_PROBS: 0.4             # Probability of edge creation. Only works if RANDOM_GRAPH is true.
+    SEED: 42                    # Seed for random graph generation. Only works if RANDOM_GRAPH is true.
+    
+    QAOA_LAYER_DEPTH: 2         # Depth of QAOA layers
+    STEPS: 50                   # Number of optimization steps
+    SIMULATOR: "qulacs.simulator"   # Quantum simulator to use
+    QAOA_LAYER_PARAMS:          # Initial parameters for QAOA layers
+      - 0.5
+      - 0.5
+      - 0.5
+      - 0.5
 
-# Other configs
-LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
+    # Other configs
+    LOG_FILE: "logs/logs_r.csv"  # File to save optimization logs
+
+# Adiabatic Variables
+ADIABATIC_VARS:
+    DISTANCE_MULTIPLIER: 8    # A multiplier for the node coordinates
+    RABI_FREQUENCY: 1         # Rabi frequency
+    DELTA_0: -5               # Initial detuning (must be negative)
+    DELTA_F: 5                # Final detuning (must be positive)
+    TOTAL_TIME: 4000          # Total time (in mu-sec)
 ```
 
 ## Example run with the above configuration
