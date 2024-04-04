@@ -10,15 +10,15 @@ The `main.py` script initializes and runs the QAOA solver based on the configura
 
 ### `Nodes=6, Edge Probs=0.4, Seed=42`
 
-Generated Graph | Probability Distribution | After Solving the QAOA
-:-------------:|:-------------:|:-------------:
-![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg)
+|         Generated Graph         |         Probability Distribution         |   After Solving the QAOA   |
+| :-----------------------------: | :--------------------------------------: | :------------------------: |
+| ![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg) |
 
 ### `Nodes=6, Edge Probs=0.4, Seed=50`
 
-Generated Graph | Probability Distribution | After Solving the QAOA
-:-------------:|:-------------:|:-------------:
-![](images/generated_graph_seed50.jpg) | ![](images/probability_distribution_seed50.jpg) | ![](images/mis_solved_seed50.jpg)
+|            Generated Graph             |            Probability Distribution             |      After Solving the QAOA       |
+| :------------------------------------: | :---------------------------------------------: | :-------------------------------: |
+| ![](images/generated_graph_seed50.jpg) | ![](images/probability_distribution_seed50.jpg) | ![](images/mis_solved_seed50.jpg) |
 
 
 ## Usage
@@ -84,6 +84,43 @@ LOGS_FILE: "logs/logs.csv"  # File to save optimization logs
 50,2024-04-02 12:45:17.143242,50,1.0432470900121016,0.4465094734265604,0.9891128922752848,1.0018932429733522
 
 ```
+
+## Other Resources
+<details>
+<summary>Notes</summary>
+- Generate requirements.txt
+
+```bash
+# create requirements.txt
+python -m pipreqs.pipreqs --ignore _env_ --force
+```
+</details>
+
+<details>
+    <summary>Links & Resources</summary>
+    <ul>
+        <li>
+            References from source: <a href=https://pulser.readthedocs.io/en/stable/index.html>Pulser</a>| <a href=https://queracomputing.github.io/Bloqade.jl/dev/>Bloqade</a>
+        </li>
+        <li><a href=https://en.wikipedia.org/wiki/Maximal_independent_set>Wikipedia - Maximal Independent Set</a></li>
+        <li>
+            <a href=https://www.quera.com/glossary/maximum-independent-set> QuEra - Maximum Independent Set</a>
+        </li>
+        <li>
+            <a href=https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.mis.maximal_independent_set.html>NetworkX - Maximal Independent Set</a>
+        </li>
+        <li>
+            <a href=https://ali-ibrahim137.github.io/competitive/programming/2020/01/02/maximum-independent-set-in-bipartite-graphs.html>GitHub page on Maximum Independent set in Bipartite Graphs</a>
+        </li>
+        <li>
+            <a href=https://docs.classiq.io/latest/tutorials/applications/optimization/max-independent-set/max-independent-set/>Classiq - MIS</a>
+        </li>
+        <li>
+        <a href=https://www.youtube.com/watch?v=csgEVurrBpU>Adiabatic Quantum Computing - Peter Wittek</a>
+        </li>
+    </ul>
+</details>
+
 
 ## Author
 

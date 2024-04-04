@@ -1,6 +1,6 @@
 import yaml
 from utils.dict_utils import dotdict
-from task_4.qaoa_gate_based import PennylaneMIS_QAOA
+from task_4.qaoa import PennylaneMIS_QAOA
 from pennylane import numpy as np
 
 config = yaml.safe_load(open("config.yml"))
@@ -23,7 +23,7 @@ def gate_based_solver(config):
         config.SIMULATOR,
         config.STEPS,
     )
-    solver.set_nx_graph_to_solve(config.NUM_NODES, config.EDGES_PROBS, config.SEED)
+    solver.set_nx_graph(config.NUM_NODES, config.EDGES_PROBS, config.SEED)
 
     if config.DRAW_GRAPH:
         solver.draw_graph("Generated Graph")
