@@ -1,4 +1,4 @@
-# QSOF Task 4: QAOA Solver for Maximum Independent Set Problem <!-- omit from toc -->
+# QSOF Task 4: Solving Maximum Independent Set Problem using QAOA and Quantum Adiabatic Algorithm <!-- omit from toc -->
 
 > For details on the implementation, see [task_4/README.md](task_4/README.md)
 
