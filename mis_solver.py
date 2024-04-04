@@ -49,7 +49,7 @@ def qaoa_solver(config):
     solver.solve(
         qaoa_layer_params=qaoa_vars.QAOA_LAYER_PARAMS,
         qaoa_layer_depth=qaoa_vars.QAOA_LAYER_DEPTH,
-        steps=qaoa_vars.SEED,  # Note: Using SEED as the number of optimization steps
+        steps=qaoa_vars.STEPS,  # Note: Using SEED as the number of optimization steps
         logs_file=qaoa_vars.LOG_FILE,
     )
 

@@ -1,11 +1,11 @@
 # Global variables
 DRAW_PLOTS: true      # Whether to draw the generated graph
-NUM_NODES: 5          # Number of nodes in the graph, for both QAOA and Adiabatic solvers
+NUM_NODES: 3          # Number of nodes in the graph, for both QAOA and Adiabatic solvers
 SOLVERS: "both"       # one of ["QAOA", "Adiabatic", "both"], determines which solver to run
 
 # QAOA variables
 QAOA_VARS:
-    RANDOM_GRAPH: true          # Whether to generate random graphs. If true, then global NUM_NODES is overridden
+    RANDOM_GRAPH: false         # Whether to generate random graphs. If true, then global NUM_NODES is overridden
     NUM_NODES: 6                # Number of nodes in the graph. Only works if RANDOM_GRAPH is true.
     EDGE_PROBS: 0.4             # Probability of edge creation. Only works if RANDOM_GRAPH is true.
     SEED: 42                    # Seed for random graph generation. Only works if RANDOM_GRAPH is true.
