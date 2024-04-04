@@ -26,24 +26,34 @@ class PennylaneMIS_QAOA(MISGraph):
 
     def __init__(
         self,
-        num_nodes,
+        num_nodes=None,
+        graph=None,
         device="qulacs.simulator",
-        distance_multiplier=8,
     ):
         """
         Initialize the QAOA solver for the MIS problem.
 
         Args:
             num_nodes (int): The number of nodes in the graph.
+            graph (networkx graph): The networkx graph to solve.
             device (str, optional): The PennyLane device to be used for simulations. Defaults to "qulacs.simulator".
-            distance_multiplier (float, optional): A multiplier for the node coordinates. Defaults to 8.
+
+        Note: Only one of [num_nodes, graph] argument must be specified.
         """
+        condition = (num_nodes is not None and graph is None) or (  # num_node is given
+            num_nodes is None and graph is not None  # graph is given
+        )
+        assert condition, "Only one of [num_nodes, graph] argument must be specified."
+
         super().__init__()
 
         # Graph variables
-        self.num_nodes = num_nodes
-        self.graph, self.coords = get_square_graph(self.num_nodes)
-        self.coords = np.array(self.coords) * distance_multiplier
+        if num_nodes is not None:
+            self.num_nodes = num_nodes
+            self.graph, self.coords = get_square_graph(self.num_nodes)
+        elif graph is not None:
+            self.graph = graph
+            self.num_nodes = len(self.graph)
         self.mis_nodes = None
 
         # QAOA variables
