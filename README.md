@@ -20,6 +20,7 @@
 - [QAOA in action on Random Graphs](#qaoa-in-action-on-random-graphs)
   - [`Nodes=6, Edge Probs=0.4, Seed=42`](#nodes6-edge-probs04-seed42)
   - [`Nodes=6, Edge Probs=0.4, Seed=50`](#nodes6-edge-probs04-seed50)
+- [Observations and Conclusions](#observations-and-conclusions)
 - [Other Resources](#other-resources)
 - [Author](#author)
 
@@ -156,7 +157,10 @@ If specified in the configuration, the solver can draw the generated graph and h
 | :--------------------------: | :-------------------------: | :------------------------------: |
 | ![](images/qaoa_gg6_s50.jpg) | ![](images/qaoa_pd_s50.jpg) | ![](images/qaoa_gg6_s50_sol.jpg) |
 
+## Observations and Conclusions
 
+- The **QAOA** is variational algorithm, which is able to solve the MIS problem quite accurately for the cases where `num_nodes` is 3, 5, and 6. For the case of `num_nodes=7`, the algorithm guesses the wrong answer. `MIS = {node4}` for `num_nodes=7`, but `{0, 2, 6}` is returned instead. The latter forms the Independent Set, but not the Maximam Independent Set. <br><br> The solution might improve with different circuit configurations (curcuit depth, starting circuit params), and different number of steps.
+- The **QAA: Quantum Adiabatic Algorithm** solves the problem, but most of the cases, it gives only the Independent Set, and not the Maximam Independent Set. <br><br> The solution can be improved by using different Rabi frequency, and detuning parameters. The total time for which the Hamiltonian is evolved, can also be modified to see the effect on the solution. <br><br>For the same graph, a different atom arrangement can also be used to obtain better solution.
 
 
 
