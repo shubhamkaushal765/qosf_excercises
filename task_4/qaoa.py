@@ -174,7 +174,9 @@ class PennylaneMIS_QAOA(MISGraph):
             plt.title("Probability Distribution")
             plt.style.use("ggplot")
             plt.bar(range(2 ** len(wires)), probs)
-            plt.show()
+            plt.show(block=False)
+            plt.pause(3)
+            plt.close()
         return probs
 
     def set_mis_nodes(self, nodes_bitstring):
@@ -215,7 +217,9 @@ class PennylaneMIS_QAOA(MISGraph):
         if title is not None:
             plt.title(title)
         nx.draw_kamada_kawai(self.graph, node_color=color_map, with_labels=True)
-        plt.show()
+        plt.show(block=False)
+        plt.pause(3)
+        plt.close()
 
 
 def main(num_nodes):

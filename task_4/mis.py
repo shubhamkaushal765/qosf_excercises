@@ -63,4 +63,6 @@ class MISGraph:
         if title is not None:
             plt.title(title)
         nx.draw_kamada_kawai(self.graph, node_color=color_map, with_labels=True)
-        plt.show()
+        plt.show(block=False)
+        plt.pause(3)
+        plt.close()

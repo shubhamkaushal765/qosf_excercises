@@ -1,5 +1,5 @@
 # Global variables
-DRAW_PLOTS: true      # Whether to draw the generated graph
+DRAW_PLOTS: false      # Whether to draw the generated graph
 NUM_NODES: 3          # Number of nodes in the graph, for both QAOA and Adiabatic solvers
 SOLVERS: "both"       # one of ["QAOA", "Adiabatic", "both"], determines which solver to run
 
