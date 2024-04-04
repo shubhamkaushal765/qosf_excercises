@@ -140,7 +140,7 @@ class PennylaneMIS_QAOA(MISGraph):
                 df.loc[len(df.index)] = [datetime.now(), i] + params.flatten().tolist()
                 df.to_csv(logs_file)
 
-    def get_probs(self, draw_graph=True):
+    def get_probs(self, draw_graph=True, plot_wait_time=None):
         """
         Get the probabilities of all possible states after running the QAOA circuit.
 
@@ -174,9 +174,11 @@ class PennylaneMIS_QAOA(MISGraph):
             plt.title("Probability Distribution")
             plt.style.use("ggplot")
             plt.bar(range(2 ** len(wires)), probs)
-            plt.show(block=False)
-            plt.pause(3)
-            plt.close()
+            if plot_wait_time:
+                plt.show(block=False)
+                plt.pause(plot_wait_time)
+                plt.close()
+            else: plt.show()
         return probs
 
     def set_mis_nodes(self, nodes_bitstring):
@@ -187,39 +189,6 @@ class PennylaneMIS_QAOA(MISGraph):
             nodes_bitstring (str): A bitstring representing the MIS nodes, where '1' indicates a node is part of the MIS, and '0' indicates it is not.
         """
         self.mis_nodes = "0" * (self.num_nodes - len(nodes_bitstring)) + nodes_bitstring
-
-    def draw_graph(self, title=None, with_mis_nodes=False):
-        """
-        Draw the graph, with an option to highlight the MIS nodes.
-
-        Args:
-            title (str, optional): Title for the plot. Defaults to None.
-            with_mis_nodes (bool, optional): Whether to highlight the MIS nodes. Defaults to False.
-        """
-
-        mis_flags = self.mis_nodes
-        if with_mis_nodes == True:
-
-            # sanity checks
-            assert mis_flags is not None, "MIS nodes not specified."
-            assert len(mis_flags) == len(
-                self.graph
-            ), f"Length of MIS node bitstring: {mis_flags} does not match \
-                number of nodes in the graph: {self.num_nodes}."
-
-            color_map = list(map(int, mis_flags))
-            color_map = [["lightblue", "green"][i] for i in color_map]
-
-        else:
-            color_map = ["lightblue" for _ in range(self.num_nodes)]
-
-        plt.figure()
-        if title is not None:
-            plt.title(title)
-        nx.draw_kamada_kawai(self.graph, node_color=color_map, with_labels=True)
-        plt.show(block=False)
-        plt.pause(3)
-        plt.close()
 
 
 def main(num_nodes):

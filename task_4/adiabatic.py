@@ -3,6 +3,7 @@ from pulser import Pulse, Sequence, Register
 from pulser_simulation import QutipEmulator
 from pulser.devices import DigitalAnalogDevice
 from pulser.waveforms import InterpolatedWaveform
+import matplotlib.pyplot as plt
 from .mis import MISGraph
 
 import sys
@@ -18,7 +19,7 @@ class AdiabaticMIS(MISGraph):
     Maximum Independent Set (MIS) problem on a graph.
     """
 
-    def __init__(self, num_nodes, distance_multiplier=8):
+    def __init__(self, num_nodes, distance_multiplier=8, plot_wait_time=False):
         """
         Initialize the AdiabaticMIS object.
 
@@ -30,6 +31,7 @@ class AdiabaticMIS(MISGraph):
         self.num_nodes = num_nodes
         self.graph, self.coords = get_square_graph(self.num_nodes)
         self.coords = np.array(self.coords) * distance_multiplier
+        self.plot_wait_time = plot_wait_time
 
     def convert_qubo_2_atomic_reg(self):
         """
@@ -47,6 +49,9 @@ class AdiabaticMIS(MISGraph):
             draw_graph=False,
             draw_half_radius=True,
         )
+        if self.plot_wait_time:
+            plt.pause(self.plot_wait_time)
+            plt.close()
         return reg
 
     def solve(self, rabi_f=1, delta_0=-5, delta_f=5, T=4000, draw_plots=True):
@@ -80,6 +85,9 @@ class AdiabaticMIS(MISGraph):
 
         if draw_plots:
             seq.draw()
+            if self.plot_wait_time:
+                plt.pause(self.plot_wait_time)
+                plt.close()
 
         # Run the simulation
         simul = QutipEmulator.from_sequence(seq)

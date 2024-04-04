@@ -1,7 +1,8 @@
 # Global variables
-DRAW_PLOTS: false      # Whether to draw the generated graph
+DRAW_PLOTS: true      # Whether to draw the generated graph
 NUM_NODES: 3          # Number of nodes in the graph, for both QAOA and Adiabatic solvers
 SOLVERS: "both"       # one of ["QAOA", "Adiabatic", "both"], determines which solver to run
+PLOT_WAIT_TIME: 10     # time in seconds for which the plots stay on screen
 
 # QAOA variables
 QAOA_VARS:
@@ -20,7 +21,7 @@ QAOA_VARS:
       - 0.5
 
     # Other configs
-    LOG_FILE: "logs/logs_r.csv"  # File to save optimization logs
+    LOG_FILE: "logs/logs_3.csv"  # File to save optimization logs
 
 # Adiabatic Variables
 ADIABATIC_VARS:

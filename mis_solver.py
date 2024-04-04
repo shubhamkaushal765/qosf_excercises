@@ -27,6 +27,7 @@ def qaoa_solver(config):
 
     qaoa_vars = dotdict(config.QAOA_VARS.copy())
     device = qaoa_vars.SIMULATOR
+    plot_wait_time = config.PLOT_WAIT_TIME
 
     if qaoa_vars.RANDOM_GRAPH:
         # Generate a random graph
@@ -43,7 +44,7 @@ def qaoa_solver(config):
         solver = PennylaneMIS_QAOA(num_nodes, device=device)
 
     # Draw the generated graph
-    solver.draw_graph("Generated Graph")
+    solver.draw_graph("Generated Graph", plot_wait_time=plot_wait_time)
 
     # Solve the MIS problem using the QAOA algorithm
     solver.solve(
@@ -54,7 +55,7 @@ def qaoa_solver(config):
     )
 
     # Get the probabilities of all possible states
-    probs = solver.get_probs(config.DRAW_PLOTS)
+    probs = solver.get_probs(config.DRAW_PLOTS, plot_wait_time=plot_wait_time)
 
     # Get the solution (the state with the highest probability)
     ans = np.argmax(probs)
@@ -66,7 +67,7 @@ def qaoa_solver(config):
     print(f"QAOA Solution: {ans}")
 
     # Draw the graph with the MIS nodes highlighted
-    solver.draw_graph("MIS nodes (in green)", with_mis_nodes=True)
+    solver.draw_graph("MIS nodes (in green)", with_mis_nodes=True, plot_wait_time=plot_wait_time)
 
 
 def adiabatic_solver(config):
@@ -84,12 +85,13 @@ def adiabatic_solver(config):
 
     num_nodes = config.NUM_NODES
     ada_vars = dotdict(config.ADIABATIC_VARS)
+    plot_wait_time = config.PLOT_WAIT_TIME
 
     # Create an instance of the AdiabaticMIS solver
-    solver = AdiabaticMIS(num_nodes, ada_vars.DISTANCE_MULTIPLIER)
+    solver = AdiabaticMIS(num_nodes, ada_vars.DISTANCE_MULTIPLIER, plot_wait_time=plot_wait_time)
 
     # Draw the generated graph
-    solver.draw_graph(title="Generated Graph")
+    solver.draw_graph(title="Generated Graph", plot_wait_time=plot_wait_time)
 
     # Solve the MIS problem using the adiabatic quantum algorithm
     counts = solver.solve(
@@ -110,15 +112,15 @@ def adiabatic_solver(config):
     solver.set_mis_nodes(ans)
 
     # Draw the graph with the MIS nodes highlighted
-    solver.draw_graph(title="Adiabatic Solution", with_mis_nodes=True)
+    solver.draw_graph(title="Adiabatic Solution", with_mis_nodes=True, plot_wait_time=plot_wait_time)
 
 
 if __name__ == "__main__":
-    solver = config.SOLVERS
-    assert solver in ["QAOA", "Adiabatic", "both"], f"Unknown solver: {solver} given."
+    solver = config.SOLVERS.lower()
+    assert solver in ["qaoa", "adiabatic", "both"], f"Unknown solver: {solver} given."
 
-    if solver in ["QAOA", "both"]:
+    if solver in ["qaoa", "both"]:
         qaoa_solver(config)
 
-    if solver in ["Adiabatic", "both"]:
+    if solver in ["adiabatic", "both"]:
         adiabatic_solver(config)

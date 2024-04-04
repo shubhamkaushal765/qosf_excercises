@@ -35,7 +35,7 @@ class MISGraph:
         """
         self.mis_nodes = "0" * (self.num_nodes - len(nodes_bitstring)) + nodes_bitstring
 
-    def draw_graph(self, title=None, with_mis_nodes=False):
+    def draw_graph(self, title=None, with_mis_nodes=False, plot_wait_time=None):
         """Draw the graph.
 
         Args:
@@ -63,6 +63,9 @@ class MISGraph:
         if title is not None:
             plt.title(title)
         nx.draw_kamada_kawai(self.graph, node_color=color_map, with_labels=True)
-        plt.show(block=False)
-        plt.pause(3)
-        plt.close()
+        if plot_wait_time:
+            plt.show(block=False)
+            plt.pause(plot_wait_time)
+            plt.close()
+        else:
+            plt.show()

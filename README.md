@@ -3,17 +3,24 @@
 > For details on the implementation, see [task_4/README.md](task_4/README.md)
 
 ## Table of Contents <!-- omit from toc -->
+- [Overview](#overview)
+  - [QAOA Algorithm](#qaoa-algorithm)
+  - [Quantum Adiabatic Algorithm](#quantum-adiabatic-algorithm)
 - [Both Solvers in Action](#both-solvers-in-action)
-  - [QAOA in action on Random Graphs](#qaoa-in-action-on-random-graphs)
-    - [`Nodes=6, Edge Probs=0.4, Seed=42`](#nodes6-edge-probs04-seed42)
-    - [`Nodes=6, Edge Probs=0.4, Seed=50`](#nodes6-edge-probs04-seed50)
-  - [Usage](#usage)
-  - [Files](#files)
-  - [Configurations](#configurations)
-  - [Example run with the above configuration](#example-run-with-the-above-configuration)
-    - [Parameters in the logs/logs.csv file](#parameters-in-the-logslogscsv-file)
-  - [Other Resources](#other-resources)
-  - [Author](#author)
+  - [Problem Definition](#problem-definition)
+  - [QAOA Solution](#qaoa-solution)
+  - [Adiabatic Solution](#adiabatic-solution)
+    - [Adiabatic Paramaters for solving the MIS problem](#adiabatic-paramaters-for-solving-the-mis-problem)
+- [QAOA in action on Random Graphs](#qaoa-in-action-on-random-graphs)
+  - [`Nodes=6, Edge Probs=0.4, Seed=42`](#nodes6-edge-probs04-seed42)
+  - [`Nodes=6, Edge Probs=0.4, Seed=50`](#nodes6-edge-probs04-seed50)
+- [Usage](#usage)
+- [Files](#files)
+- [Configurations](#configurations)
+- [Example run with the above configuration](#example-run-with-the-above-configuration)
+  - [Parameters in the logs/logs.csv file](#parameters-in-the-logslogscsv-file)
+- [Other Resources](#other-resources)
+- [Author](#author)
 
 ## Overview
 
@@ -27,13 +34,32 @@ The Quantum Approximate Optimization Algorithm (QAOA) is a hybrid quantum-classi
 The adiabatic quantum algorithm used in this implementation is based on the principles of quantum annealing. It involves evolving the quantum system from an easily solvable initial state to the desired final state by slowly changing the Hamiltonian of the system.
 
 
-# Both Solvers in Action
+## Both Solvers in Action
+
+### Problem Definition
 
 | Number of Nodes |   Generated Graph    | Neutral Atoms Arrangement |
 | :-------------: | :------------------: | :-----------------------: |
 |        3        | ![](images/gg3.jpg)  |   ![](images/ag3.jpeg)    |
 |        5        | ![](images/gg5.jpeg) |   ![](images/ag5.jpeg)    |
-|        6        | ![](images/gg6.jpeg) |   ![](images/ag3.jpeg)    |
+|        6        | ![](images/gg6.jpeg) |    ![](images/ag6.png)    |
+|        7        | ![](images/gg7.jpeg) |   ![](images/ag7.jpeg)    |
+
+
+### QAOA Solution
+
+### Adiabatic Solution
+
+#### Adiabatic Paramaters for solving the MIS problem
+
+![](images/adiabatic_params.jpeg)
+
+| Number of Nodes | Probability Distribution |  Most Probable Solution  |
+| :-------------: | :----------------------: | :----------------------: |
+|        3        |  ![](images/apd3.jpeg)   | ![](images/ag3_sol.jpeg) |
+|        5        |  ![](images/apd5.jpeg)   | ![](images/ag5_sol.jpeg) |
+|        6        |  ![](images/apd6.jpeg)   | ![](images/ag6_sol.jpeg) |
+|        7        |  ![](images/apd7.jpeg)   | ![](images/ag7_sol.jpeg) |
 
 
 
@@ -52,12 +78,15 @@ The adiabatic quantum algorithm used in this implementation is based on the prin
 | ![](images/qaoa_gg6_s50.jpg) | ![](images/qaoa_pd_s50.jpg) | ![](images/qaoa_gg6_s50_sol.jpg) |
 
 
+
 ## Usage
 
 - **Installation**: 
     ```bash
     pip install -r requirements.txt
     ```
+> - scipy==1.12.0 is a hard dependency. Any other version of scipy does not work.
+> - To resolve any other dependency issue, uninstall `pulser` and install it again at last.
 
 - **Configuration**: Modify the `config.yml` file to specify the parameters for the QAOA solver. The configuration file includes settings such as the number of nodes, edge probabilities, QAOA type, layer depth, and simulator.
 
