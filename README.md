@@ -1,24 +1,47 @@
-# QSOF Task 4: QAOA Solver for Maximum Independent Set Problem
+# QSOF Task 4: QAOA Solver for Maximum Independent Set Problem <!-- omit from toc -->
 
-This project implements a solver for the Maximum Independent Set (MIS) problem using the Quantum Approximate Optimization Algorithm (QAOA). The QAOA algorithm is a variational quantum algorithm designed to find approximate solutions to combinatorial optimization problems.
+> For details on the implementation, see [task_4/README.md](task_4/README.md)
+
+## Table of Contents <!-- omit from toc -->
+- [Overview](#overview)
+  - [QAOA Algorithm](#qaoa-algorithm)
+  - [Quantum Adiabatic Algorithm](#quantum-adiabatic-algorithm)
+- [QAOA in action on Random Graphs](#qaoa-in-action-on-random-graphs)
+  - [`Nodes=6, Edge Probs=0.4, Seed=42`](#nodes6-edge-probs04-seed42)
+  - [`Nodes=6, Edge Probs=0.4, Seed=50`](#nodes6-edge-probs04-seed50)
+- [Usage](#usage)
+- [Files](#files)
+- [Configurations](#configurations)
+- [Example run with the above configuration](#example-run-with-the-above-configuration)
+  - [Parameters in the logs/logs.csv file](#parameters-in-the-logslogscsv-file)
+- [Other Resources](#other-resources)
+- [Author](#author)
 
 ## Overview
 
-The `main.py` script initializes and runs the QAOA solver based on the configurations specified in the `config.yml` file. It uses PennyLane, a Python library for quantum machine learning, to construct and optimize quantum circuits.
+This project implements a solver for the Maximum Independent Set (MIS) problem using the Quantum Approximate Optimization Algorithm (QAOA) and the Quantum Adiabatic Algorithm. 
 
-## QAOA in action
+### QAOA Algorithm
+The Quantum Approximate Optimization Algorithm (QAOA) is a hybrid quantum-classical algorithm for solving combinatorial optimization problems. It works by encoding the problem into a cost Hamiltonian and applying alternating layers of cost and mixer Hamiltonians to a quantum state.
+
+### Quantum Adiabatic Algorithm
+
+The adiabatic quantum algorithm used in this implementation is based on the principles of quantum annealing. It involves evolving the quantum system from an easily solvable initial state to the desired final state by slowly changing the Hamiltonian of the system.
+
+
+## QAOA in action on Random Graphs
 
 ### `Nodes=6, Edge Probs=0.4, Seed=42`
 
-|         Generated Graph         |         Probability Distribution         |   After Solving the QAOA   |
-| :-----------------------------: | :--------------------------------------: | :------------------------: |
-| ![](images/generated_graph.jpg) | ![](images/probability_distribution.jpg) | ![](images/mis_solved.jpg) |
+|       Generated Graph        |  Probability Distribution   |      After Solving the QAOA      |
+| :--------------------------: | :-------------------------: | :------------------------------: |
+| ![](images/qaoa_gg6_s42.jpg) | ![](images/qaoa_pd_s42.jpg) | ![](images/qaoa_gg6_s42_sol.jpg) |
 
 ### `Nodes=6, Edge Probs=0.4, Seed=50`
 
-|            Generated Graph             |            Probability Distribution             |      After Solving the QAOA       |
-| :------------------------------------: | :---------------------------------------------: | :-------------------------------: |
-| ![](images/generated_graph_seed50.jpg) | ![](images/probability_distribution_seed50.jpg) | ![](images/mis_solved_seed50.jpg) |
+|       Generated Graph        |  Probability Distribution   |      After Solving the QAOA      |
+| :--------------------------: | :-------------------------: | :------------------------------: |
+| ![](images/qaoa_gg6_s50.jpg) | ![](images/qaoa_pd_s50.jpg) | ![](images/qaoa_gg6_s50_sol.jpg) |
 
 
 ## Usage

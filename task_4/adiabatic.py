@@ -3,8 +3,12 @@ from pulser import Pulse, Sequence, Register
 from pulser_simulation import QutipEmulator
 from pulser.devices import DigitalAnalogDevice
 from pulser.waveforms import InterpolatedWaveform
+from mis import MISGraph
+
+import sys
+
+sys.path.append(".")
 from utils.dict_utils import plot_distribution
-from task_4.mis import MISGraph
 from utils.graph_utils import get_square_graph
 
 
