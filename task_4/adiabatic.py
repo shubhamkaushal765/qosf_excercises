@@ -13,14 +13,32 @@ from utils.graph_utils import get_square_graph
 
 
 class AdiabaticMIS(MISGraph):
-    def __init__(self, num_nodes, distance_multiplier=8):
-        super().__init__()
+    """
+    A class that represents an adiabatic quantum algorithm for solving the
+    Maximum Independent Set (MIS) problem on a graph.
+    """
 
+    def __init__(self, num_nodes, distance_multiplier=8):
+        """
+        Initialize the AdiabaticMIS object.
+
+        Args:
+            num_nodes (int): The number of nodes in the graph.
+            distance_multiplier (float, optional): A multiplier for the node coordinates.
+                Defaults to 8.
+        """
+        super().__init__()
         self.num_nodes = num_nodes
         self.graph, self.coords = get_square_graph(self.num_nodes)
         self.coords = np.array(self.coords) * distance_multiplier
 
     def convert_qubo_2_atomic_reg(self):
+        """
+        Convert the QUBO problem to a register of atomic qubits with their coordinates.
+
+        Returns:
+            Register: A register of atomic qubits with their coordinates.
+        """
         # coords
         coords = self.coords
         qubits = dict(enumerate(coords))
@@ -32,26 +50,39 @@ class AdiabaticMIS(MISGraph):
         )
         return reg
 
-    def solve(self, draw_plots=True):
+    def solve(self, rabi_f=1, delta_0=-5, delta_f=5, T=4000, draw_plots=True):
+        """
+        Solve the MIS problem using an adiabatic quantum algorithm.
+
+        Args:
+            draw_plots (bool, optional): Whether to draw plots or not. Defaults to True.
+            rabi_f (float): Rabi frequency
+            delta_0 (float): Initial detuning (must be negative)
+            delta_f (float): Final detuning (must be positive)
+            T (int): Total time
+
+        Returns:
+            dict: A dictionary containing the final state counts.
+        """
         reg = self.convert_qubo_2_atomic_reg()
+        Omega = rabi_f  # Rabi frequency
 
-        Omega = 1
-        delta_0 = -5  # just has to be negative
-        delta_f = -delta_0  # just has to be positive
-        T = 4000
-
+        # Define the adiabatic pulse
         adiabatic_pulse = Pulse(
             InterpolatedWaveform(T, [1e-9, Omega, 1e-9]),
             InterpolatedWaveform(T, [delta_0, 0, delta_f]),
             0,
         )
 
+        # Create the sequence and add the adiabatic pulse
         seq = Sequence(reg, DigitalAnalogDevice)
         seq.declare_channel("ising", "rydberg_global")
         seq.add(adiabatic_pulse, "ising")
+
         if draw_plots:
             seq.draw()
 
+        # Run the simulation
         simul = QutipEmulator.from_sequence(seq)
         results = simul.run()
         final = results.get_final_state()
