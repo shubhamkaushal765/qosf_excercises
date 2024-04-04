@@ -21,6 +21,7 @@
   - [`Nodes=6, Edge Probs=0.4, Seed=42`](#nodes6-edge-probs04-seed42)
   - [`Nodes=6, Edge Probs=0.4, Seed=50`](#nodes6-edge-probs04-seed50)
 - [Observations and Conclusions](#observations-and-conclusions)
+- [Future Work](#future-work)
 - [Other Resources](#other-resources)
 - [Author](#author)
 
@@ -159,10 +160,28 @@ If specified in the configuration, the solver can draw the generated graph and h
 
 ## Observations and Conclusions
 
-- The **QAOA** is variational algorithm, which is able to solve the MIS problem quite accurately for the cases where `num_nodes` is 3, 5, and 6. For the case of `num_nodes=7`, the algorithm guesses the wrong answer. `MIS = {node4}` for `num_nodes=7`, but `{0, 2, 6}` is returned instead. The latter forms the Independent Set, but not the Maximam Independent Set. <br><br> The solution might improve with different circuit configurations (curcuit depth, starting circuit params), and different number of steps.
-- The **QAA: Quantum Adiabatic Algorithm** solves the problem, but most of the cases, it gives only the Independent Set, and not the Maximam Independent Set. <br><br> The solution can be improved by using different Rabi frequency, and detuning parameters. The total time for which the Hamiltonian is evolved, can also be modified to see the effect on the solution. <br><br>For the same graph, a different atom arrangement can also be used to obtain better solution.
+1. QAOA (Quantum Approximate Optimization Algorithm):
+   - The QAOA is a variational quantum algorithm capable of solving the Maximum Independent Set (MIS) problem with reasonable accuracy for smaller graphs `(num_nodes = 3, 5, and 6)`.
+   - However, for the case of `num_nodes = 7`, the algorithm guesses an incorrect solution, returning `{0, 2, 6}`, an independent solution instead of the correct MIS `{node4}`.
+   - The performance of the QAOA algorithm may improve by adjusting circuit configurations, such as circuit depth, starting circuit parameters, and the number of steps.
 
+2. QAA (Quantum Adiabatic Algorithm):
+   - The QAA algorithm solves the MIS problem, but in most cases, it finds an Independent Set rather than the Maximum Independent Set.
+   - The solution can be improved by modifying parameters like Rabi frequency, detuning parameters, and the total time for which the Hamiltonian is evolved.
+   - Using different atom arrangements for the same graph may also lead to better solutions.
 
+3. Challenges and Observations:
+   - Finding a good arrangement of atoms is a challenge in the Adiabatic Algorithm. A good arrangement can potentially solve any problem using this algorithm.
+   - When testing the QAOA solver on random graphs with `num_nodes = 6, edge_probs = 0.4, and seeds = 42 and 50`, the solver provides the correct solution with good probability.
+   - The higher the number of edges in a graph, the more challenging it becomes to solve the MIS problem using the QAOA algorithm.
+
+## Future Work
+
+- Ablation study on the QAOA solver. Change the parameters (circuit_depth, circuit_params, mixer hamiltonian, steps, etc.) and see how the solution changes.
+- Ablation study on the Adiabatic solver. Change the parameters (rabi frequency, detuning wave, atomic arrangement) and see how the solution changes.
+- To check how increasing the number of nodes and edges change the fidelity of the algorithms.
+
+The key aspects are conducting ablation studies by varying relevant parameters for both solvers, and evaluating their performance as problem sizes scale up. This can provide insights into parameter sensitivities, optimal configurations, and potential limitations of the algorithms.
 
 ## Other Resources
 <details>
